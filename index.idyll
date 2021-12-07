@@ -1,1 +1,354 @@
+[meta title:"IS 445 Final Project" description:"Job Scenario in NY State " /]
 
+[Header
+  fullWidth:true
+  title:"The State of New York"
+  subtitle:"Job Trends (2012-2017)"
+  author:"Surbhi Bhargava"
+  background:"url(static/images/intro_data_viz.png) no-repeat center"
+  color:"#333333"
+  style:`{height:420, width:1349, padding:20, margin:0}`
+   /]
+//Refernce image:https://www.globaldatabase.com/api/image-serving/1024/550?url=https://storage.fileservice.dev/media/e2286e2a-15a6-4b2d-905b-3f65fcc0ca24.jpg
+# Introduction 
+#### The New York region is divided into 10 economic regions which are:
+  [div style:`{"float":"left","width":"50%"}`]
+  [ul]
+    [li ] Western NY [/li]
+    [li ] Finger Lakes [/li]
+    [li ] Southern Tier [/li]
+    [li ] Central NY [/li]
+    [li ] Mohawk Valley [/li]
+  [/ul]
+  [/div]
+  [div style:`{"float":"left","width":"50%"}`]
+  [ul]
+    [li ] Capital Region [/li]
+    [li ] Mid-Hudson [/li]    
+    [li ] New York City [/li]
+    [li ] Long Island [/li]
+    [li ] North Country [/li]
+  [/ul]
+  [/div]
+[Scroller currentStep:scrollerIndex ]
+	[Graphic  ]
+	   [Float position:"right"]
+		[img src:'static/images/newyork.jpg' 
+                 style:`{width:700, height:600}`
+                  /] 
+//Image reference:https://esd.ny.gov/file/esd-regional-mapjpg
+	   [/Float]
+	[/Graphic]
+	
+   [Step style:`{width:600, border:15, "text-align":"justify", "background-color":"LightGray"}`] 
+           [ul]
+            Key industries are:
+	   [li] Western New York :  Biotech and Life Sciences, Agribusiness, Software and Digital Media and Tourism [/li]
+           [li] Finger Lakes :  Optics and Imaging, Biotech and Life Sciences, Software and Digital Media, and Agribusiness [/li]
+           [li] Southern-Tier :  Cybersecurity, Distribution, Financial Services and Agribusiness [/li]
+	   [li] Central New York :  Cybersecurity, Life Sciences, Renewable Energy and Agribusiness [/li]
+           [li] Mohawk Valley :  Distribution, Cybersecurity, Material Processing and Electronics [/li]
+           [/ul]
+   [/Step]
+   
+
+   [Step  style:`{width:600, border:15, "text-align":"justify", "background-color":"LightGray"}`]
+           [ul]
+            Key industries are:
+	   [li] Capital Region :  Electronics, Digital Game Development, Material Processing and Renewable Energy [/li]
+	   [li] Mid-Hudson :  Biotech and Life Sciences, Agribusiness, Craft Beverage and Tourism [/li]
+	   [li] New York City :  Biotech and Life Sciences, Financial Services, Digital Media and Tourism [/li]
+	   [li] Long Island :  Biotech and Life Sciences, Renewable Energy, Craft Beverage and Tourism [/li]
+	   [li] North Country :  Renewable Energy, Agribusiness, Tourism and Transporrtation Equipment [/li]
+           [/ul]
+   [/Step]
+//Reference: https://esd.ny.gov/regions
+
+[/Scroller]
+[div style:`{"text-align":"justify"}` ]
+The North American Industry Classification System (NAICS) is the standard used by Federal statistical agencies in classifying business establishments for the purpose of collecting, analyzing, and publishing statistical data related to the U.S. business economy.
+There are 22 core industries:
+[/div]
+[div style:`{"display": "table","content": "","clear": "both"}`]
+  [div style:`{"float":"left","width":"50%", "color":"#008080"}`]
+  [ul]
+    [li ] Educational Services [/li]
+    [li ] Arts, Entertainment, and Recreation [/li]
+    [li ] Manufacturing [/li]
+    [li ] Wholesale Trade [/li]
+    [li ] Health Care and Social Assistance [/li]
+    [li ] Construction [/li]
+    [li ] Agriculture, Forestry, Fishing and Hunting [/li]
+    [li ] Unclassified Industry [/li]
+    [li ] Professional, Scientific, and Technical Services [/li]
+    [li ] Information [/li]
+    [li ] Accommodation and Food Services [/li]
+    [li ] Retail Trade [/li]
+  [/ul]
+  [/div]
+  [div style:`{"float":"left","width":"50%", "color":"#008080"}`]
+  [ul]
+    [li ] Administrative and Support and Waste Management and Remediation Services [/li]
+    [li ] Government [/li]    
+    [li ] Management of Companies and Enterprises [/li]
+    [li ] Real Estate and Rental and Leasing [/li]
+    [li ] Mining, Quarrying, and Oil and Gas Extraction [/li]
+    [li ] Utilities [/li]
+    [li ] Finance and Insurance [/li]
+    [li ] Transportation and Warehousing [/li]
+    [li ] Other Services (except Public Administration) [/li]
+  [/ul]
+  [/div]
+
+//Refernce: https://www.census.gov/naics/
+
+[/div]
+# Data Visualization
+
+[FullWidth style:`{"color":"#008080"}`]
+### Plot to study the mean number of jobs in different economic regions of the New York State in different industries during the years 2012-2017:[/FullWidth]
+[h3] Select an Industry: [/h3]
+
+[data name:"df_ny" source:"Jobs_By_Industry___Beginning_2012 .csv"/]
+//[Table data:`df_ny.slice(0,10)`/]
+
+
+[var name:"selectVal" value:"Manufacturing"  /]
+[Select value:selectVal options:`["Educational Services",
+ "Arts, Entertainment, and Recreation",
+ "Manufacturing",
+ "Wholesale Trade",
+ "Health Care and Social Assistance",
+ "Construction",
+ "Agriculture, Forestry, Fishing and Hunting",
+ "Unclassified Industry",
+ "Professional, Scientific, and Technical Services",
+ "Information",
+ "Accommodation and Food Services",
+ "Retail Trade",
+ "Administrative and Support and Waste Management and Remediation Services",
+ "Government",
+ "Management of Companies and Enterprises",
+ "Real Estate and Rental and Leasing",
+ "Mining, Quarrying, and Oil and Gas Extraction",
+ "Utilities",
+ "Finance and Insurance",
+ "Transportation and Warehousing",
+ "Other Services (except Public Administration)",
+ "Educational Services (Private)"]`/]
+
+//[Display value:selectVal /]
+
+//change data below according to selectVal
+//plots
+[p]  [/p]
+
+[IdyllVegaLite data:df_ny  spec:`{
+  mark:"bar",
+  width:600,
+  height:400,
+  transform:[{filter:{"field":"Industry", "equal": selectVal}}],
+  encoding:{
+	x: {field:"Region", type:"nominal", "axis":{"ticks":false, "values":[]}},
+	y: {"aggregate":"mean", "field":"Jobs",
+      "axis": {
+        "title": "Mean number of jobs"
+               } 
+           },
+        color:{"field":"Region","type":"nominal"}
+	    }
+                                  }`
+/]
+
+
+[FullWidth style:`{"color":"#008080"}`]
+### Plot to study the trend in number of jobs in the New York State over the years 2012-2017 . Select a region and an industry from the drop-down :
+[/FullWidth]
+
+[h3] Select a Region: [/h3]
+
+[div style:`{"float":"left","width":"50%"}`] 
+[var name:"radioVal" value:"New York City" /]
+[Radio value:radioVal options:`['New York City',
+ 'Mohawk Valley',
+ 'Mid-Hudson',
+ 'Southern Tier',
+ 'North Country'
+]`  /]
+[/div]
+
+[div style:`{"float":"left","width":"50%"}`] 
+[var name:"radioVal" value:"New York City" /]
+[Radio value:radioVal options:`[
+ 'Finger Lakes',
+ 'Long Island',
+ 'Capital Region',
+ 'Western New York',
+ 'Central New York'
+]`  /]
+[/div]
+
+//[Display value:radioVal /]
+
+[FullWidth]
+
+[Conditional if:`radioVal=="Capital Region"`]
+   [div style:`{"float":"left","width":"50%"}`]
+
+	[IdyllVegaLite   spec:`{
+	  width:400,
+	  height:600,
+	  "data": {
+ 	            "url": "https://data.ny.gov/api/geospatial/vnhn-dpxa?method=export&format=GeoJSON",
+	             "format": {"property": "features"}
+ 	             },
+ 		 "projection": {"type": "mercator"},
+  
+ 		 "transform": [
+ 	   {
+	      "lookup": "properties.region",
+	      "from": {
+	        "data": {
+ 	         "values": [
+  	          {"Selected state":"Capital"}
+            
+  	        ]
+ 	       },
+  	      "key": "Selected state",
+  	      "fields": ["Selected state"]
+        
+  	    }
+  	  }
+ 	 ],
+ 		 "encoding": {"color": {"field": "Selected state", "type": "nominal"}},
+		  "mark": "geoshape"
+		}
+	`/]
+	[/div]
+[/Conditional]
+
+
+[Conditional if:`radioVal=="Mid-Hudson"`]
+   [div style:`{"float":"left","width":"50%"}`]
+
+	[IdyllVegaLite   spec:`{
+	  width:400,
+	  height:600,
+	  "data": {
+ 	            "url": "https://data.ny.gov/api/geospatial/vnhn-dpxa?method=export&format=GeoJSON",
+	             "format": {"property": "features"}
+ 	             },
+ 		 "projection": {"type": "mercator"},
+  
+ 		 "transform": [
+ 	   {
+	      "lookup": "properties.region",
+	      "from": {
+	        "data": {
+ 	         "values": [
+  	          {"Selected state":"Hudson Valley"}
+            
+  	        ]
+ 	       },
+  	      "key": "Selected state",
+  	      "fields": ["Selected state"]
+        
+  	    }
+  	  }
+ 	 ],
+ 		 "encoding": {"color": {"field": "Selected state", "type": "nominal"}},
+		  "mark": "geoshape"
+		}
+	`/]
+	[/div]
+[/Conditional]
+
+[Conditional if:`radioVal== "New York City"|radioVal=="Mohawk Valley"| radioVal=="Southern Tier"| radioVal=="North Country"|radioVal=="Finger Lakes"| radioVal=="Long Island"|radioVal=="Western New York"| radioVal=="Central New York"`]
+[div style:`{"float":"left","width":"50%"}`]
+
+[IdyllVegaLite   spec:`{
+  width:400,
+  height:600,
+  "data": {
+             "url": "https://data.ny.gov/api/geospatial/vnhn-dpxa?method=export&format=GeoJSON",
+             "format": {"property": "features"}
+              },
+  "projection": {"type": "mercator"},
+  
+  "transform": [
+    {
+      "lookup": "properties.region",
+      "from": {
+        "data": {
+          "values": [
+            {"Selected state":radioVal}
+            
+          ]
+        },
+        "key": "Selected state",
+        "fields": ["Selected state"]
+        
+      }
+    }
+  ],
+  "encoding": {"color": {"field": "Selected state", "type": "nominal"}},
+  "mark": "geoshape"
+}
+`/]
+[/div]
+
+[/Conditional]
+//Reference: https://github.com/vega/vega-lite/issues/3404
+//Reference: https://github.com/vega/vega/issues/1770
+
+[div style:`{"float":"right","width":"50%"}`]
+[var name:"select2Val" value:"Manufacturing"  /]
+[Select value:select2Val options:`["Educational Services",
+ "Arts, Entertainment, and Recreation",
+ "Manufacturing",
+ "Wholesale Trade",
+ "Health Care and Social Assistance",
+ "Construction",
+ "Agriculture, Forestry, Fishing and Hunting",
+ "Unclassified Industry",
+ "Professional, Scientific, and Technical Services",
+ "Information",
+ "Accommodation and Food Services",
+ "Retail Trade",
+ "Administrative and Support and Waste Management and Remediation Services",
+ "Government",
+ "Management of Companies and Enterprises",
+ "Real Estate and Rental and Leasing",
+ "Mining, Quarrying, and Oil and Gas Extraction",
+ "Utilities",
+ "Finance and Insurance",
+ "Transportation and Warehousing",
+ "Other Services (except Public Administration)",
+ "Educational Services (Private)"]`/]
+
+[IdyllVegaLite data:df_ny  spec:`{
+  mark:"line",
+  width:500,
+  height:517,
+  transform:[{filter:{"field":"Region", "equal": radioVal}},
+			{filter: {"field":"Industry", "equal":select2Val }}
+	     ],
+  encoding:{
+	x: {field:"Year", type:"ordinal", sort:"x"},
+	y: {"field":"Jobs",
+      "axis": {
+        "title": "Number of jobs"
+               } 
+           }
+	    }
+                                   }`
+/]
+[/div]
+[/FullWidth]
+
+[FullWidth]
+[div style:`{"float":"left","font-size":"12px"}`]
+The data used for plotting the graphs is published by the State of New York and named as "Jobs By Industry: Beginning 2012" which shows the number of jobs in different industries over the years 2012-2017 in the 10 Empire State Development (ESD) economic development regions. The data can be obtained from the website [data.gov](https://catalog.data.gov/dataset/jobs-by-industry-beginning-2012/resource/a86887a6-7e30-4a74-b59a-8c8ef1babcb5).
+Also, data used for ploting the map is available at [Geographical Data.](https://data.ny.gov/Economic-Development/Labor-Market-Regions-Map/vnhn-dpxa)
+[/div]
+[/FullWidth]
