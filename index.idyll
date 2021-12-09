@@ -9,7 +9,7 @@
   color:"#333333"
   style:`{height:420, width:1349, padding:20, margin:0}`
    /]
-//Refernce image:https://www.globaldatabase.com/api/image-serving/1024/550?url=https://storage.fileservice.dev/media/e2286e2a-15a6-4b2d-905b-3f65fcc0ca24.jpg
+//Reference image:https://www.globaldatabase.com/api/image-serving/1024/550?url=https://storage.fileservice.dev/media/e2286e2a-15a6-4b2d-905b-3f65fcc0ca24.jpg
 # Introduction 
 #### The New York region is divided into 10 economic regions which are:
   [div style:`{"float":"left","width":"50%"}`]
@@ -101,6 +101,7 @@ There are 22 core industries:
   [/div]
 
 //Refernce: https://www.census.gov/naics/
+//Reference: https://idyll-lang.org/docs/component/scroller
 
 [/div]
 # Data Visualization
@@ -138,7 +139,7 @@ There are 22 core industries:
  "Educational Services (Private)"]`/]
 
 //[Display value:selectVal /]
-
+//Reference: https://idyll-lang.org/docs/component/select
 //change data below according to selectVal
 //plots
 [p]  [/p]
@@ -187,6 +188,7 @@ There are 22 core industries:
  'Central New York'
 ]`  /]
 [/div]
+//Reference: https://idyll-lang.org/docs/component/radio
 
 //[Display value:radioVal /]
 
@@ -221,7 +223,8 @@ There are 22 core industries:
   	  }
  	 ],
  		 "encoding": {"color": {"field": "Selected state", "type": "nominal"}},
-		  "mark": "geoshape"
+		  "mark": "geoshape",
+                   "title": "The economic regions of NY State"
 		}
 	`/]
 	[/div]
@@ -257,7 +260,8 @@ There are 22 core industries:
   	  }
  	 ],
  		 "encoding": {"color": {"field": "Selected state", "type": "nominal"}},
-		  "mark": "geoshape"
+		  "mark": "geoshape",
+                  "title": "The economic regions of NY State"
 		}
 	`/]
 	[/div]
@@ -292,7 +296,8 @@ There are 22 core industries:
     }
   ],
   "encoding": {"color": {"field": "Selected state", "type": "nominal"}},
-  "mark": "geoshape"
+  "mark": "geoshape",
+  "title": "The economic regions of NY State"
 }
 `/]
 [/div]
@@ -352,3 +357,4 @@ The data used for plotting the graphs is published by the State of New York and 
 Also, data used for ploting the map is available at [Geographical Data.](https://data.ny.gov/Economic-Development/Labor-Market-Regions-Map/vnhn-dpxa)
 [/div]
 [/FullWidth]
+
